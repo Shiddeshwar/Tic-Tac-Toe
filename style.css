@@ -1,0 +1,22 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    width: 30vmax;
+    height: 30vmax;
+}
+.box {
+    display: flex;
+    width: 10vmax;
+    height: 10vmax;
+    border: 3px solid black;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+}
