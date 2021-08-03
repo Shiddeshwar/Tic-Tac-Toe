@@ -4,17 +4,29 @@
         <title>Tic Tac Toe</title>
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
-        <div class="container">
-            <div data-key="0" class="box"></div>
-            <div data-key="1" class="box"></div>
-            <div data-key="2" class="box"></div>
-            <div data-key="3" class="box"></div>
-            <div data-key="4" class="box"></div>
-            <div data-key="5" class="box"></div>
-            <div data-key="6" class="box"></div>
-            <div data-key="7" class="box"></div>
-            <div data-key="8" class="box"></div>
+    <body class="glowBlue">
+        <div id="main-container">
+            <div class="intro">
+                <h1>X & O</h1>
+            </div>
+            <div class="choose">
+                <div>Choose</div>
+                <div class="options">
+                    <button class="box glowRed">X</button>
+                    <button class="box x glowRed">O</button>
+                </div>
+            </div>
+            <div class="container">
+                <div data-key="00" class="box"></div>
+                <div data-key="01" class="box"></div>
+                <div data-key="02" class="box"></div>
+                <div data-key="10" class="box"></div>
+                <div data-key="11" class="box"></div>
+                <div data-key="12" class="box"></div>
+                <div data-key="20" class="box"></div>
+                <div data-key="21" class="box"></div>
+                <div data-key="22" class="box"></div>
+            </div>
         </div>
     </body>
     <script src="script.js"></script>

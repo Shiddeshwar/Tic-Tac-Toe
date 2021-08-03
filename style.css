@@ -1,9 +1,54 @@
+html {
+    color: white;
+    background-color: black;
+}
 body {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 98vh;
+    width: 89vw;
+    font-size: 3.5vmax;
+    margin-left: 4.4vmax;
+}
+.intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    font-size: 2vmax;
+    animation: flicker 1.5s infinite alternate;    
+}
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #0fa,
+        0 0 80px #0fa,
+        0 0 90px #0fa,
+        0 0 100px #0fa,
+        0 0 150px #0fa;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+.choose {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 9vmax; 
+}
+.options {
     width: 100vw;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-top: 2vmax;
+}
+.x {
+    margin-left: 2vmax;
 }
 .container {
     display: grid;
@@ -13,10 +58,63 @@ body {
 }
 .box {
     display: flex;
-    width: 10vmax;
-    height: 10vmax;
-    border: 3px solid black;
+    width: 8vmax;
+    height: 8vmax;
+    border: 0.2rem solid #fff;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 .2rem #ff0000,
+              0 0 0.4rem #ff0000,
+              0 0 1.4rem #ff0000,
+              inset 0 0 1.3rem #ff0000;
+              
     justify-content: center;
     align-items: center;
-    font-size: xx-large;
+    font-size: 8vmax;
+    background-color: black;
+}
+.glowBlue {
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px rgb(0, 118, 228),
+    0 0 82px rgb(0, 118, 228),
+    0 0 92px rgb(0, 118, 228),
+    0 0 102px rgb(0, 118, 228),
+    0 0 151px rgb(0, 118, 228);
+}
+.glowRed {
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px rgb(255, 5, 5),
+    0 0 82px rgb(255, 5, 5),
+    0 0 92px rgb(255, 5, 5),
+    0 0 102px rgb(255, 5, 5),
+    0 0 151px rgb(255, 5, 5);
+}
+.replay {
+    border: 0.2rem solid #fff;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 .2rem #ff0000,
+              0 0 0.4rem #ff0000,
+              0 0 1.4rem #ff0000,
+              inset 0 0 1.3rem #ff0000;
+    width: 11vmax;
+    height: 4vmax;
+    background-color: black;
+    color: red;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px rgb(228, 0, 0),
+    0 0 82px rgb(228, 0, 0),
+    0 0 92px rgb(228, 0, 0),
+    0 0 102px rgb(228, 0, 0),
+    0 0 151px rgb(228, 0, 0);
+    font-size: 2vmax;      
 }
