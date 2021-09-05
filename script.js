@@ -7,7 +7,8 @@ const game = (() => {
     ////////////////Game Initialization////////////////////////////////////////
     let container = document.getElementsByClassName("container");
     container[0].style.display = "none";
-    let playCount = 0;
+    let player1Turn = true;
+    // let boardOneD = ["00","01","01","10","11","12","20","21","22"];
 
 
     ////////////////function to create 3D Board////////////////////////////////
@@ -48,6 +49,23 @@ const game = (() => {
 
     ////////////////Populate Board With Players Input//////////////////////////
     ////////////////And check for Winners//////////////////////////////////////
+    // const spliceFunction = (ij) => {
+    
+    //     for (let i = 0; i < boardOneD.length; i++) {
+    //         if (boardOneD[i] === ij) {
+    //             boardOneD.splice(i,1);
+    //             break;  
+    //         }
+    //     }
+        
+    // }
+    // const opponentChoice = (ij) => {
+    //     spliceFunction(ij);
+    //     let choice = getRandomInt(boardOneD.length);
+    //     let res = boardOneD[choice];
+    //     spliceFunction(res);
+    //     return breakDataKey(res);
+    // };
     const breakDataKey = (ij) => {
         let i = ij[0];
         let j = ij[1];
@@ -56,25 +74,26 @@ const game = (() => {
             j
         };
     };
+
     const FillBoardFunc = (e) => {
         let box = e.target;
         let ij = box.attributes[0].nodeValue;
         let cell = breakDataKey(ij);
-
-        if (playCount < 9 && box.attributes["data-key"] != undefined) {
-            if (playCount % 2 === 0 && board[cell.i][cell.j] === "-") {
+        
+        if (box.attributes["data-key"] != undefined) {
+            if (player1Turn && board[cell.i][cell.j] === "-") {
                 board[cell.i][cell.j] = player1.marker;
-                box.textContent = player1.marker; 
+                box.textContent = player1.marker;
                 let winnerObj = checkWinner(board);
-                masterResultDisplay(winnerObj,playCount);
-                playCount++;
+                masterResultDisplay(winnerObj);
+                player1Turn = false;
             }
-            else if(board[cell.i][cell.j] === "-") {
+            if(!player1Turn && board[cell.i][cell.j] === "-") {
                 board[cell.i][cell.j] = player2.marker;
                 box.textContent = player2.marker;
                 let winnerObj = checkWinner(board);
-                masterResultDisplay(winnerObj,playCount);
-                playCount++;
+                masterResultDisplay(winnerObj);
+                player1Turn = true;
             }
         }
 
@@ -86,18 +105,18 @@ const game = (() => {
 
 
     ////////////////Result Display and box highlighting/////////////////////
-    const masterResultDisplay = (winnerObj, playCount) => {
-        if(winnerObj.marker != "-") {
+    const masterResultDisplay = (winnerObj) => {
+        if(winnerObj.marker !== "-") {
             container[0].removeEventListener('click',FillBoardFunc); //Disable clicks on remaining board cells.
             colorWinningBoxes(winnerObj);
             resultDisplay(winnerObj.marker);
         }
-        else if(playCount === 8) {
+        else if(isMovesLeft(board) === false) {
             resultDisplay(winnerObj.marker);
         }
     };
     const colorWinningBoxes = (obj) => {
-        let box1 = document.querySelector(`div[data-key="${obj.box1}"]`);//Lookout 
+        let box1 = document.querySelector(`div[data-key="${obj.box1}"]`);
         let box2 = document.querySelector(`div[data-key="${obj.box2}"]`);
         let box3 = document.querySelector(`div[data-key="${obj.box3}"]`);
         box1.style.boxShadow = "0 0 .2rem #fff, 0 0 .2rem #fff, 0 0 2rem #00ff6a, 0 0 0.4rem #00ff6a, 0 0 1.4rem #00ff6a, inset 0 0 1.3rem #00ff6a";
@@ -121,6 +140,14 @@ const game = (() => {
 
 
     ////////////////Check for winners////////////////
+    const isMovesLeft = (board) => {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (board[i][j] === "-") return true;
+            }
+        }
+        return false;
+    };
     const checkWinner = (board) => {
         //check rows
         for (let row = 0; row < 3; row++) {
@@ -156,5 +183,11 @@ const game = (() => {
     };
     const packer = (marker,box1,box2,box3) => {
         return {marker,box1,box2,box3};
-    };//Winning locations also sent for further highliting    
+    };//Winning locations also sent for further highliting
+    
+    
+    ////////////////Generate Random numbers////////////////
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
 })();
